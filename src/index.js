@@ -9,7 +9,7 @@ import thunk from "redux-thunk";
 import reducer from "./reducer/reducer";
 
 ReactDOM.render(
-    <Provider store={createStore(reducer, compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()))}>
+    <Provider store={createStore(reducer, applyMiddleware(thunk))}>
         <App /></Provider>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
