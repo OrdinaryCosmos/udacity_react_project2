@@ -6,9 +6,10 @@
 2.  run `npm install ` or `yarn add` to install all dependencies.
 3.  run `npm start` or `yarn start` to start the app.
 4.  view the website on localhost:3000
-5.  on the login page, pick a user to login. Otherwise, you can only view the "leader board" page.
-6.  on the question page, you can pick a question to answer.
-7.   on the creat new question page, you can start a new question.
-
+5.  the website is only open to authenticated user, so make sure pick a user to login on "login". 
+6.  on the question page, you can view all the answered and unanswered questions. Click on the "poll" button under each question will redirect you to the detail page of each question. You will be prompted to answer the question and view the poll result. 
+7.   click on the "create new question " tab to create a new question. All you need to input are two options for each"would you rather" question and submit. 
+8.   click on the "leader board" tab to view the current scores of all users. Scores are calculated based on how many questions each user has answered and created.
+9.   don't forget to click the log out button the upper right corner after you are done.
 
 ###Enjoy!

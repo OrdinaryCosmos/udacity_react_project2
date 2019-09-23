@@ -46,6 +46,7 @@ const userReducer = (state = {}, action) => {
     switch (action.type) {
         case INITIATEUSER:
             return action.payload;
+
         case ANSWER:
             let { questionID: qid, userID: authedUser, answer } = action.payload;
             state = {
@@ -59,6 +60,18 @@ const userReducer = (state = {}, action) => {
                 }
             }
             return state;
+
+        case CREATE:
+            let authUser = action.payload.author;
+            state = {
+                ...state,
+                [authUser]: {
+                    ...state[authUser],
+                    questions: state[authUser].questions.concat([action.payload.id])
+                }
+            }
+            return state;
+
         default:
             return state
     }

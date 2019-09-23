@@ -11,15 +11,16 @@ class Question extends Component {
     render() {
 
         let { questions, users, authUser } = this.props;
-        console.log("ques", questions, users, authUser);
-
+        // console.log("ques", questions, users, authUser);
+        let ordered_questionIDs = Object.keys(questions);
+        ordered_questionIDs.sort((id1, id2) => questions[id2].timestamp - questions[id1].timestamp)
         return (questions && users && authUser) ? (
             <div className="questionlist">
                 <div className="pickbutton">
                     <span onClick={e => this.toggleShowed(true)} className={this.state.showUnanswered ? "activeTab" : ""}>UNANSWERED QUESTIONS</span>
                     <span onClick={e => this.toggleShowed(false)} className={this.state.showUnanswered ? "" : "activeTab"}>ANSWERED QUESTIONS</span>
                 </div>
-                {Object.keys(questions).map(qkey => (users[authUser].answers.hasOwnProperty(questions[qkey].id) !== this.state.showUnanswered && <div className="questioncard">
+                {ordered_questionIDs.map(qkey => (users[authUser].answers.hasOwnProperty(questions[qkey].id) !== this.state.showUnanswered && <div key={qkey} className="questioncard">
                     <div className="username"><p>{users[questions[qkey].author].name} asks</p></div>
                     <div className="img-container">
                         <div style={{ backgroundImage: `url(${users[questions[qkey].author].avatarURL})` }} ></div>
@@ -36,7 +37,7 @@ class Question extends Component {
 
                 </div>))}
                 <div style={{ textAlign: "center" }}>
-                    <Link to="/create">
+                    <Link to="/add">
                         <button>create a new question</button>
 
                     </Link>

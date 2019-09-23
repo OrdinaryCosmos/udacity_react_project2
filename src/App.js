@@ -9,11 +9,9 @@ import { connect } from "react-redux";
 import { initialSetQuestion } from "./actions/questionActions";
 import { initiateSetUsers } from "./actions/userAction";
 import { logout } from "./actions/authUserActions";
-import { BrowserRouter, Route, NavLink } from "react-router-dom";
-
-
-
-
+import { BrowserRouter, Route, NavLink, Switch } from "react-router-dom";
+import PrivateRoute from './components/PrivateRoute';
+import NoMatch from './components/NoMatch';
 
 class App extends Component {
   componentDidMount() {
@@ -31,8 +29,8 @@ class App extends Component {
             <div className="header">
               <nav>
                 <NavLink to="/questions" exact>Questions</NavLink>
-                <NavLink to="/create" exact>Create New Question</NavLink>
-                <NavLink to="/user" exact>Leader Board</NavLink>
+                <NavLink to="/add" exact>Create New Question</NavLink>
+                <NavLink to="/leaderboard" exact>Leader Board</NavLink>
               </nav>
               {authUser && (<div className="user-profile"> {/* logout page is only visible for logged user */}
                 <span>Hello, {users[authUser].name}</span>
@@ -42,12 +40,14 @@ class App extends Component {
 
             </div>
 
-
-            <Route path="/" exact component={Login} />
-            <Route path="/questions" exact component={Question} />
-            <Route path="/question/:id" exact component={QuestionDetail} />
-            <Route path="/create" exact component={Create} />
-            <Route path="/user" exact component={User} />
+            <Switch>
+              <Route path="/" exact component={Login} />
+              <PrivateRoute path="/questions" component={Question} authUser={this.props.authUser} />
+              <PrivateRoute path="/question/:id" component={QuestionDetail} authUser={this.props.authUser} />
+              <PrivateRoute path="/add" component={Create} authUser={this.props.authUser} />
+              <PrivateRoute path="/leaderboard" component={User} authUser={this.props.authUser} />
+              <Route component={NoMatch} />
+            </Switch>
           </BrowserRouter>}
       </div>
     );

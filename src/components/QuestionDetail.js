@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { answerQuestion } from "../actions/questionActions";
+import { Redirect } from 'react-router-dom';
 
 export class QuestionDetail extends Component {
 
@@ -13,6 +14,10 @@ export class QuestionDetail extends Component {
         this.setState({ option: e.target.value })// set the state according to user's selection.
     }
     render() {
+        if (!this.props.questions.hasOwnProperty(this.props.match.params.id)) {
+            return <Redirect to="/notmatch" />
+        }
+
         let { users } = this.props;
         let authUser = users[this.props.authUser];
         let question = this.props.questions[this.props.match.params.id]//define which question to be shown on this page
@@ -31,8 +36,8 @@ export class QuestionDetail extends Component {
                 <br />
                 <div className={`result-breakdown ${authUser.answers[question.id] === "optionOne" ? "active" : ""}`}>
                     <p>
-                        Would you rather {question.optionOne.text}?
-                        </p>
+                        Would you rather {question.optionOne.text}? {/* 'would you rather' text is already in the text */}
+                    </p>
                     <br />
                     <div className="progress-bar">
                         <div className="progress-percentage" style={{ width: `${optionOnePercentage}%` }}>{optionOnePercentage}&#37;</div>
