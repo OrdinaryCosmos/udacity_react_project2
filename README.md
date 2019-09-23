@@ -1,6 +1,6 @@
-#WOULD YOU RATHER...#
+# WOULD YOU RATHER...
 
-##Instruction
+## Instruction
 
 1. `git clone ` or download the zip file to local computer.  
 2.  run `npm install ` or `yarn` to install all dependencies.
@@ -12,4 +12,4 @@
 8.   click on the "leader board" tab to view the current scores of all users. Scores are calculated based on how many questions each user has answered and created.
 9.   don't forget to click the log out button the upper right corner after you are done.
 
-###Enjoy!
+### Enjoy!
