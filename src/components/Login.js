@@ -17,7 +17,7 @@ export class Login extends Component {
         }
         this.props.login(this.state.userid); //when user select the login name and confirm, set the the login name 
         const { state = {} } = this.props.location;
-        const { from = "/question" } = state;
+        const { from = "/questions" } = state;
         this.props.history.push(from) //redirect user to the questions page
     }
     render() {
